@@ -53,34 +53,36 @@ public class ReportDefinition {
         }
 
         public String getColumnTitle(int index) {
-            if (index >= titleRow.size()) {
-                throw new IllegalArgumentException("Max column index: " + (titleRow.size() - 1));
-            }
+            validateColumnIndex(index);
             return titleRow.get(index);
         }
 
         public IndexedSeq<String> getDataRow(int index) {
-            if (index >= data.size()) {
-                throw new IllegalArgumentException("Max row index: " + (data.size() - 1));
-            }
+            validateRowIndex(index);
             return data.get(index);
         }
 
         public IndexedSeq<String> getDataColumn(int index) {
-            if (index >= titleRow.size()) {
-                throw new IllegalArgumentException("Max column index: " + (titleRow.size() - 1));
-            }
+            validateColumnIndex(index);
             return data.map(r -> r.get(index));
         }
 
         public String getDataCell(int row, int column) {
+            validateRowIndex(row);
+            validateColumnIndex(column);
+            return data.get(row).get(column);
+        }
+
+        private void validateRowIndex(int row) {
             if (row >= data.size()) {
                 throw new IllegalArgumentException("Max row index: " + (data.size() - 1));
             }
+        }
+
+        private void validateColumnIndex(int column) {
             if (column >= titleRow.size()) {
                 throw new IllegalArgumentException("Max column index: " + (titleRow.size() - 1));
             }
-            return data.get(row).get(column);
         }
 
         private static void validate(IndexedSeq<String> titleRow, IndexedSeq<IndexedSeq<String>> data) {
