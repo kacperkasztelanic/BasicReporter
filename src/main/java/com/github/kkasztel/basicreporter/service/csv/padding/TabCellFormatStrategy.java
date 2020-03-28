@@ -1,24 +1,17 @@
 package com.github.kkasztel.basicreporter.service.csv.padding;
 
 import com.github.kkasztel.basicreporter.model.ReportDefinition;
+import com.github.kkasztel.basicreporter.service.common.ColumnLengthFinder;
 
 import io.vavr.Function1;
-import io.vavr.Function2;
 import io.vavr.collection.Vector;
 
-public class TabCellFormatStrategy implements CellFormatStrategy {
-
-    private static final Function2<ReportDefinition.Table, Integer, Integer> LENGTH_FUNCTION =//
-            (t, i) -> t.getDataColumn(i).append(t.getTitleRow().get(i))//
-                    .map(String::trim)//
-                    .map(String::length)//
-                    .max()//
-                    .getOrElse(0);
+class TabCellFormatStrategy implements CellFormatStrategy {
 
     private final Function1<Integer, Integer> lengthFunction;
 
     public TabCellFormatStrategy(ReportDefinition.Table table) {
-        this.lengthFunction = LENGTH_FUNCTION.curried().apply(table).memoized();
+        this.lengthFunction = ColumnLengthFinder.getLengthFunction().curried().apply(table).memoized();
     }
 
     @Override

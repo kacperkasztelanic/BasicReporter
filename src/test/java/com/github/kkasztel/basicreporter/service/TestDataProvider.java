@@ -25,4 +25,15 @@ public class TestDataProvider {
                 )//
         );
     }
+
+    public static ReportDefinition getMultiSheetReportDefinition() {
+        ReportDefinition basic = getReportDefinition();
+        return ReportDefinition.of(//
+                basic.getName(),//
+                Vector(//
+                        ReportDefinition.Sheet.of(basic.getName() + 1, basic.getSheets().head().getData()),
+                        ReportDefinition.Sheet.of(basic.getName() + 2, basic.getSheets().head().getData())//
+                )//
+        );
+    }
 }
