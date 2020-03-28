@@ -8,23 +8,23 @@ import java.nio.charset.StandardCharsets;
 
 import io.vavr.control.Try;
 
-public class XlsxBasicReporter extends AbstractExcelBasicReporter {
+public class XlsBasicReporter extends AbstractExcelBasicReporter {
 
-    public XlsxBasicReporter() {
+    public XlsBasicReporter() {
         super(false, false);
     }
 
-    public XlsxBasicReporter(boolean useAutosize, boolean bordered) {
+    public XlsBasicReporter(boolean useAutosize, boolean bordered) {
         super(useAutosize, bordered);
     }
 
     @Override
     public Report generate(ReportDefinition definition) {
-        return Try.of(() -> generateData(definition, true))//
+        return Try.of(() -> generateData(definition, false))//
                 .map(d -> Report.of(//
                         definition.getName(),//
                         d,//
-                        ReportType.XLSX,//
+                        ReportType.XLS,//
                         StandardCharsets.UTF_8//
                         )//
                 )//
