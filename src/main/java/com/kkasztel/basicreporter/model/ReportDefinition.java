@@ -1,46 +1,36 @@
 package com.kkasztel.basicreporter.model;
 
 import io.vavr.collection.IndexedSeq;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
 import lombok.ToString;
+import lombok.Value;
 
 import static io.vavr.API.Vector;
 
-@AllArgsConstructor(staticName = "of")
-@EqualsAndHashCode
+@Value(staticConstructor = "of")
 @ToString(of = { "name" })
 public class ReportDefinition {
 
-    @Getter
-    private final String name;
-    @Getter
-    private final IndexedSeq<Sheet> sheets;
+    String name;
+    IndexedSeq<Sheet> sheets;
 
     public static ReportDefinition of(String name, Table data) {
         return new ReportDefinition(name, Vector(Sheet.of(name, data)));
     }
 
-    @AllArgsConstructor(staticName = "of")
-    @EqualsAndHashCode
+    @Value(staticConstructor = "of")
     @ToString(of = { "name" })
-    public static final class Sheet {
+    public static class Sheet {
 
-        @Getter
-        private final String name;
-        @Getter
-        private final Table data;
+        String name;
+        Table data;
     }
 
-    @EqualsAndHashCode
+    @Value
     @ToString(of = { "titleRow" })
-    public static final class Table {
+    public static class Table {
 
-        @Getter
-        private final IndexedSeq<String> titleRow;
-        @Getter
-        private final IndexedSeq<IndexedSeq<String>> data;
+        IndexedSeq<String> titleRow;
+        IndexedSeq<IndexedSeq<String>> data;
 
         public static Table of(IndexedSeq<String> titleRow, IndexedSeq<IndexedSeq<String>> data) {
             return new Table(titleRow, data);

@@ -6,7 +6,7 @@ import com.kkasztel.basicreporter.model.ReportType;
 
 import java.nio.charset.StandardCharsets;
 
-import io.vavr.control.Try;
+import static io.vavr.API.Try;
 
 public class XlsxBasicReporter extends AbstractExcelBasicReporter {
 
@@ -20,7 +20,7 @@ public class XlsxBasicReporter extends AbstractExcelBasicReporter {
 
     @Override
     public Report generate(ReportDefinition definition) {
-        return Try.of(() -> generateData(definition, true))//
+        return Try(() -> generateData(definition, true))//
                 .map(d -> Report.of(//
                         definition.getName(),//
                         d,//
