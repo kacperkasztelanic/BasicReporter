@@ -23,7 +23,7 @@ public class CsvBasicReporter implements BasicReporter {
 
     public Report generate(ReportDefinition definition) {
         if (definition.getSheets().size() > 1) {
-            throw new IllegalArgumentException("Creation of csv file with multiple sheets impossible");
+            throw new IllegalArgumentException("Creation of csv file with multiple sheets is not possible");
         }
         return prepare(definition);
     }

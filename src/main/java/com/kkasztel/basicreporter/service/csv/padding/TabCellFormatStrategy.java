@@ -4,7 +4,7 @@ import com.kkasztel.basicreporter.model.ReportDefinition;
 import com.kkasztel.basicreporter.service.common.ColumnLengthFinder;
 
 import io.vavr.Function1;
-import io.vavr.collection.Vector;
+import io.vavr.collection.Iterator;
 
 class TabCellFormatStrategy implements CellFormatStrategy {
 
@@ -21,6 +21,6 @@ class TabCellFormatStrategy implements CellFormatStrategy {
     }
 
     private static String spaces(int n) {
-        return Vector.fill(n, " ").mkString();
+        return Iterator.fill(n, " ").mkString();
     }
 }

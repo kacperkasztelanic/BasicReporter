@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.util.function.IntUnaryOperator;
 
 import io.vavr.Function1;
-import io.vavr.collection.Stream;
+import io.vavr.collection.Iterator;
 
 abstract class AbstractExcelBasicReporter implements BasicReporter {
 
@@ -59,7 +59,7 @@ abstract class AbstractExcelBasicReporter implements BasicReporter {
 
     private void createDataRows(Sheet sheet, ReportDefinition.Sheet sheetDefinition, CellStyle style) {
         sheetDefinition.getData().getData()//
-                .zip(Stream.from(1))//
+                .zip(Iterator.from(1))//
                 .forEach(r -> {
                     Row row = sheet.createRow(r._2);
                     r._1.zipWithIndex()//
@@ -78,7 +78,7 @@ abstract class AbstractExcelBasicReporter implements BasicReporter {
                 .curried()//
                 .apply(data)//
                 .memoized();
-        Stream.range(0, data.getTitleRow().size())//
+        Iterator.range(0, data.getTitleRow().size())//
                 .forEach(i -> resize(sheet, columnLengthFunction, i));
     }
 
