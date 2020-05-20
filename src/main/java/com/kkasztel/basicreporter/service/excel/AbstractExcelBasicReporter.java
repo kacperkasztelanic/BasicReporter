@@ -1,5 +1,7 @@
 package com.kkasztel.basicreporter.service.excel;
 
+import com.kkasztel.basicreporter.model.ReportingException;
+import com.kkasztel.basicreporter.model.Report;
 import com.kkasztel.basicreporter.model.ReportDefinition;
 import com.kkasztel.basicreporter.service.BasicReporter;
 import com.kkasztel.basicreporter.service.common.ColumnLengthFinder;
@@ -19,6 +21,8 @@ import java.util.function.IntUnaryOperator;
 
 import io.vavr.Function1;
 import io.vavr.collection.Iterator;
+import io.vavr.control.Either;
+import io.vavr.control.Try;
 
 abstract class AbstractExcelBasicReporter implements BasicReporter {
 
@@ -32,6 +36,15 @@ abstract class AbstractExcelBasicReporter implements BasicReporter {
         this.useAutosize = useAutosize;
         this.bordered = bordered;
     }
+
+    @Override
+    public Either<ReportingException, Report> tryGenerate(ReportDefinition definition) {
+        return generateReport(definition)//
+                .toEither()//
+                .mapLeft(t -> new ReportingException(t.getMessage(), t));
+    }
+
+    protected abstract Try<Report> generateReport(ReportDefinition definition);
 
     protected byte[] generateData(ReportDefinition definition, boolean xlsx) throws IOException {
         try (Workbook workbook = xlsx ? new XSSFWorkbook() : new HSSFWorkbook()) {

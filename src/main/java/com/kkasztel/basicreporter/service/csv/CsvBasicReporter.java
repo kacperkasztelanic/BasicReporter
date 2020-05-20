@@ -1,5 +1,6 @@
 package com.kkasztel.basicreporter.service.csv;
 
+import com.kkasztel.basicreporter.model.ReportingException;
 import com.kkasztel.basicreporter.model.Report;
 import com.kkasztel.basicreporter.model.ReportDefinition;
 import com.kkasztel.basicreporter.model.ReportType;
@@ -8,6 +9,10 @@ import com.kkasztel.basicreporter.service.csv.padding.CellFormatStrategy;
 import com.kkasztel.basicreporter.service.csv.padding.CellFormatStrategyFactory;
 
 import java.nio.charset.Charset;
+
+import io.vavr.control.Either;
+
+import static io.vavr.API.Try;
 
 public class CsvBasicReporter implements BasicReporter {
 
@@ -21,6 +26,14 @@ public class CsvBasicReporter implements BasicReporter {
         this.charset = charset;
     }
 
+    @Override
+    public Either<ReportingException, Report> tryGenerate(ReportDefinition definition) {
+        return Try(() -> generate(definition))//
+                .toEither()//
+                .mapLeft(t -> new ReportingException(t.getMessage(), t));
+    }
+
+    @Override
     public Report generate(ReportDefinition definition) {
         if (definition.getSheets().size() > 1) {
             throw new IllegalArgumentException("Creation of csv file with multiple sheets is not possible");
