@@ -40,6 +40,14 @@
         <sonar.tests>${project.basedir}/src/test/</sonar.tests>
     </properties>
 
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub kacperkasztelanic Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/kacperkasztelanic/basic-reporter</url>
+        </repository>
+    </distributionManagement>
+
     <dependencies>
         <dependency>
             <groupId>org.projectlombok</groupId>
