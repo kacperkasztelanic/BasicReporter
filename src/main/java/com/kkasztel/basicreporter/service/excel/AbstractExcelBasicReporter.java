@@ -1,5 +1,6 @@
 package com.kkasztel.basicreporter.service.excel;
 
+import com.kkasztel.basicreporter.model.ReportDefinition.Table;
 import com.kkasztel.basicreporter.model.ReportingException;
 import com.kkasztel.basicreporter.model.Report;
 import com.kkasztel.basicreporter.model.ReportDefinition;
@@ -86,7 +87,7 @@ abstract class AbstractExcelBasicReporter implements BasicReporter {
         cell.setCellStyle(style);
     }
 
-    private void resize(Sheet sheet, ReportDefinition.Table data) {
+    private void resize(Sheet sheet, Table data) {
         Function1<Integer, Integer> columnLengthFunction = ColumnLengthFinder.getLengthFunction()//
                 .curried()//
                 .apply(data)//

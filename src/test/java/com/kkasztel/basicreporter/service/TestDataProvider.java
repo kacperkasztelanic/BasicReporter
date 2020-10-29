@@ -1,6 +1,8 @@
 package com.kkasztel.basicreporter.service;
 
 import com.kkasztel.basicreporter.model.ReportDefinition;
+import com.kkasztel.basicreporter.model.ReportDefinition.Sheet;
+import com.kkasztel.basicreporter.model.ReportDefinition.Table;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
@@ -13,7 +15,7 @@ public class TestDataProvider {
     public static ReportDefinition getReportDefinition() {
         return ReportDefinition.of(//
                 "report",//
-                ReportDefinition.Table.of(//
+                Table.of(//
                         Vector("Col1", "Column2", "C3"),//
                         Vector(//
                                 Vector("Shannon", "volutpat.nunc.sit@Etiamlaoreetlibero.ca", "AMX46MEU3VV"),//
@@ -31,8 +33,8 @@ public class TestDataProvider {
         return ReportDefinition.of(//
                 basic.getName(),//
                 Vector(//
-                        ReportDefinition.Sheet.of(basic.getName() + 1, basic.getSheets().head().getData()),
-                        ReportDefinition.Sheet.of(basic.getName() + 2, basic.getSheets().head().getData())//
+                        Sheet.of(basic.getName() + 1, basic.getSheets().head().getData()),
+                        Sheet.of(basic.getName() + 2, basic.getSheets().head().getData())//
                 )//
         );
     }

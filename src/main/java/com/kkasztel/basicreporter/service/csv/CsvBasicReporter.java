@@ -1,5 +1,6 @@
 package com.kkasztel.basicreporter.service.csv;
 
+import com.kkasztel.basicreporter.model.ReportDefinition.Table;
 import com.kkasztel.basicreporter.model.ReportingException;
 import com.kkasztel.basicreporter.model.Report;
 import com.kkasztel.basicreporter.model.ReportDefinition;
@@ -50,7 +51,7 @@ public class CsvBasicReporter implements BasicReporter {
         );
     }
 
-    private byte[] prepareData(ReportDefinition.Table data) {
+    private byte[] prepareData(Table data) {
         CellFormatStrategy formatStrategy = CellFormatStrategyFactory.createCellFormatStrategy(separator, data);
         return data.getData().prepend(data.getTitleRow())//
                 .map(r -> r.zipWithIndex().map(p -> formatStrategy.format(p._1, p._2)))//

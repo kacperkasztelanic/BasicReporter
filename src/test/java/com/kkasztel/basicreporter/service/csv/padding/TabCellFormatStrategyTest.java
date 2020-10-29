@@ -11,11 +11,11 @@ import io.vavr.collection.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class TabCellFormatStrategyTest {
+class TabCellFormatStrategyTest {
 
     @ParameterizedTest
     @MethodSource("provideColumn")
-    public void correctlyFormatsInput(String input, String expected) {
+    void correctlyFormatsInput(String input, String expected) {
         ReportDefinition reportDefinition = TestDataProvider.getReportDefinition();
         CellFormatStrategy cellFormatStrategy = CellFormatStrategyFactory.createCellFormatStrategy(//
                 "\t",//

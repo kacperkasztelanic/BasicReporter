@@ -15,10 +15,10 @@ import io.vavr.control.Try;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
-public class CsvBasicReporterTest {
+class CsvBasicReporterTest {
 
     @Test
-    public void successfullyGeneratesCsv() {
+    void successfullyGeneratesCsv() {
         BasicReporter reporter = new CsvBasicReporter(",", System.lineSeparator(), StandardCharsets.UTF_8);
         Report actual = reporter.generate(TestDataProvider.getReportDefinition());
         Try.of(() -> IOUtils.resourceToByteArray("input.csv", getClass().getClassLoader()))//
@@ -28,7 +28,7 @@ public class CsvBasicReporterTest {
     }
 
     @Test
-    public void successfullyGeneratesTsv() {
+    void successfullyGeneratesTsv() {
         BasicReporter reporter = new CsvBasicReporter("\t", System.lineSeparator(), StandardCharsets.UTF_8);
         Report actual = reporter.generate(TestDataProvider.getReportDefinition());
         Try.of(() -> IOUtils.resourceToByteArray("input.tsv", getClass().getClassLoader()))//
