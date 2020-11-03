@@ -1,6 +1,6 @@
 package com.kkasztel.basicreporter.service.csv.padding;
 
-import com.kkasztel.basicreporter.model.ReportDefinition;
+import com.kkasztel.basicreporter.model.ReportDefinition.Table;
 import com.kkasztel.basicreporter.service.common.ColumnLengthFinder;
 
 import io.vavr.Function1;
@@ -10,7 +10,7 @@ class TabCellFormatStrategy implements CellFormatStrategy {
 
     private final Function1<Integer, Integer> lengthFunction;
 
-    public TabCellFormatStrategy(ReportDefinition.Table table) {
+    public TabCellFormatStrategy(Table table) {
         this.lengthFunction = ColumnLengthFinder.getLengthFunction().curried().apply(table).memoized();
     }
 
