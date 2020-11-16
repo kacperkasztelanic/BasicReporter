@@ -76,7 +76,7 @@ public class ReportDefinition {
         }
 
         private static void validate(IndexedSeq<String> titleRow, IndexedSeq<IndexedSeq<String>> data) {
-            if (data.find(r -> r.size() != titleRow.size()).isDefined()) {
+            if (data.exists(r -> r.size() != titleRow.size())) {
                 throw new IllegalArgumentException(
                         "Numer of columns in each row must be equal to the number of columns in the title row: " //
                                 + titleRow.size());
