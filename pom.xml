@@ -5,24 +5,24 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.kkasztel</groupId>
     <artifactId>basic-reporter</artifactId>
-    <version>1.1.5</version>
+    <version>1.1.6</version>
 
     <properties>
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <lombok.version>1.18.20</lombok.version>
+        <lombok.version>1.18.24</lombok.version>
         <vavr.version>0.10.3</vavr.version>
-        <commons-io.version>2.10.0</commons-io.version>
-        <poi-ooxml.version>5.0.0</poi-ooxml.version>
-        <junit-jupiter.version>5.7.2</junit-jupiter.version>
+        <commons-io.version>2.11.0</commons-io.version>
+        <poi-ooxml.version>5.2.3</poi-ooxml.version>
+        <junit-jupiter.version>5.9.1</junit-jupiter.version>
 
-        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+        <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
         <maven-source-plugin.version>3.2.1</maven-source-plugin.version>
-        <maven-deploy-plugin.version>2.8.2</maven-deploy-plugin.version>
+        <maven-deploy-plugin.version>3.0.0</maven-deploy-plugin.version>
         <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
-        <versions-maven-plugin.version>2.8.1</versions-maven-plugin.version>
-        <jacoco-maven-plugin.version>0.8.7</jacoco-maven-plugin.version>
+        <versions-maven-plugin.version>2.13.0</versions-maven-plugin.version>
+        <jacoco-maven-plugin.version>0.8.8</jacoco-maven-plugin.version>
 
         <project.testresult.directory>${project.build.directory}/test-results</project.testresult.directory>
         <jacoco.reportFolder>${project.build.directory}/jacoco</jacoco.reportFolder>

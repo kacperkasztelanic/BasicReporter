@@ -2,13 +2,12 @@ package com.kkasztel.basicreporter.service.excel;
 
 import com.kkasztel.basicreporter.model.Report;
 import com.kkasztel.basicreporter.model.ReportDefinition;
-import com.kkasztel.basicreporter.model.ReportType;
-
-import java.nio.charset.StandardCharsets;
 
 import io.vavr.control.Try;
 
+import static com.kkasztel.basicreporter.model.ReportType.XLS;
 import static io.vavr.API.Try;
+import static java.nio.charset.StandardCharsets.UTF_8;
 
 public class XlsBasicReporter extends AbstractExcelBasicReporter {
 
@@ -22,13 +21,7 @@ public class XlsBasicReporter extends AbstractExcelBasicReporter {
 
     @Override
     public Try<Report> generateReport(ReportDefinition definition) {
-        return Try(() -> generateData(definition, false))//
-                .map(d -> Report.of(//
-                        definition.getName(),//
-                        d,//
-                        ReportType.XLS,//
-                        StandardCharsets.UTF_8//
-                        )//
-                );
+        return Try(() -> generateData(definition, false))
+                .map(d -> Report.of(definition.getName(), d, XLS, UTF_8));
     }
 }

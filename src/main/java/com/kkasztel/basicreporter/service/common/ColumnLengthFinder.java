@@ -10,10 +10,10 @@ import lombok.NoArgsConstructor;
 public class ColumnLengthFinder {
 
     public static Function2<Table, Integer, Integer> getLengthFunction() {
-        return (t, i) -> t.getDataColumn(i).append(t.getTitleRow().get(i))//
-                .map(String::trim)//
-                .map(String::length)//
-                .max()//
+        return (t, i) -> t.getDataColumn(i).append(t.getTitleRow().get(i))
+                .map(String::trim)
+                .map(String::length)
+                .max()
                 .getOrElse(0);
     }
 }

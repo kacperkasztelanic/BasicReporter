@@ -40,8 +40,8 @@ abstract class AbstractExcelBasicReporter implements BasicReporter {
 
     @Override
     public Either<ReportingException, Report> tryGenerate(ReportDefinition definition) {
-        return generateReport(definition)//
-                .toEither()//
+        return generateReport(definition)
+                .toEither()
                 .mapLeft(t -> new ReportingException(t.getMessage(), t));
     }
 
@@ -66,17 +66,17 @@ abstract class AbstractExcelBasicReporter implements BasicReporter {
 
     private void createTitleRow(Sheet sheet, ReportDefinition.Sheet sheetDefinition, CellStyle style) {
         Row row = sheet.createRow(0);
-        sheetDefinition.getData().getTitleRow()//
-                .zipWithIndex()//
+        sheetDefinition.getData().getTitleRow()
+                .zipWithIndex()
                 .forEach(p -> createCell(row, p._2, p._1, style));
     }
 
     private void createDataRows(Sheet sheet, ReportDefinition.Sheet sheetDefinition, CellStyle style) {
-        sheetDefinition.getData().getData()//
-                .zip(Iterator.from(1))//
+        sheetDefinition.getData().getData()
+                .zip(Iterator.from(1))
                 .forEach(r -> {
                     Row row = sheet.createRow(r._2);
-                    r._1.zipWithIndex()//
+                    r._1.zipWithIndex()
                             .forEach(c -> createCell(row, c._2, c._1, style));
                 });
     }
@@ -88,11 +88,11 @@ abstract class AbstractExcelBasicReporter implements BasicReporter {
     }
 
     private void resize(Sheet sheet, Table data) {
-        Function1<Integer, Integer> columnLengthFunction = ColumnLengthFinder.getLengthFunction()//
-                .curried()//
-                .apply(data)//
+        Function1<Integer, Integer> columnLengthFunction = ColumnLengthFinder.getLengthFunction()
+                .curried()
+                .apply(data)
                 .memoized();
-        Iterator.range(0, data.getTitleRow().size())//
+        Iterator.range(0, data.getTitleRow().size())
                 .forEach(i -> resize(sheet, columnLengthFunction, i));
     }
 

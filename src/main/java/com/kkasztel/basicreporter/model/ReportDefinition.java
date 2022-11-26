@@ -78,8 +78,8 @@ public class ReportDefinition {
         private static void validate(IndexedSeq<String> titleRow, IndexedSeq<IndexedSeq<String>> data) {
             if (data.exists(r -> r.size() != titleRow.size())) {
                 throw new IllegalArgumentException(
-                        "Numer of columns in each row must be equal to the number of columns in the title row: " //
-                                + titleRow.size());
+                    "Number of columns of each row must equal the number of columns of the title row: " + titleRow.size()
+                );
             }
         }
     }

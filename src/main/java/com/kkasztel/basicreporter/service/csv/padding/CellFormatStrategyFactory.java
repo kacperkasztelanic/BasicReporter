@@ -15,9 +15,9 @@ public class CellFormatStrategyFactory {
 
     public static CellFormatStrategy createCellFormatStrategy(String separator, Table table) {
         CellFormatStrategy simpleStrategy = (s, i) -> s;
-        return Match(separator).of(//
-                Case($(is("\t")), new TabCellFormatStrategy(table)),//
-                Case($(), simpleStrategy)//
+        return Match(separator).of(
+                Case($(is("\t")), new TabCellFormatStrategy(table)),
+                Case($(), simpleStrategy)
         );
     }
 }

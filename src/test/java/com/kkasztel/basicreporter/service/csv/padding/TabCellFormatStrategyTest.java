@@ -17,22 +17,22 @@ class TabCellFormatStrategyTest {
     @MethodSource("provideColumn")
     void correctlyFormatsInput(String input, String expected) {
         ReportDefinition reportDefinition = TestDataProvider.getReportDefinition();
-        CellFormatStrategy cellFormatStrategy = CellFormatStrategyFactory.createCellFormatStrategy(//
-                "\t",//
-                reportDefinition.getSheets().head().getData()//
+        CellFormatStrategy cellFormatStrategy = CellFormatStrategyFactory.createCellFormatStrategy(
+                "\t",
+                reportDefinition.getSheets().head().getData()
         );
         assertEquals(expected, cellFormatStrategy.format(input, 0));
     }
 
     @SuppressWarnings("unused")
     private static Stream<Arguments> provideColumn() {
-        return Stream.of(//
-                Arguments.of("Col1", "Col1   \t"),//
-                Arguments.of("Shannon", "Shannon\t"),//
-                Arguments.of("", "       \t"),//
-                Arguments.of("Wing", "Wing   \t"),//
-                Arguments.of("Tate", "Tate   \t"),//
-                Arguments.of("Clare", "Clare  \t")//
+        return Stream.of(
+                Arguments.of("Col1", "Col1   \t"),
+                Arguments.of("Shannon", "Shannon\t"),
+                Arguments.of("", "       \t"),
+                Arguments.of("Wing", "Wing   \t"),
+                Arguments.of("Tate", "Tate   \t"),
+                Arguments.of("Clare", "Clare  \t")
         );
     }
 }
